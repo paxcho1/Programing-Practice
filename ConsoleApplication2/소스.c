@@ -2,64 +2,64 @@
 
 int main(){
 
-	int InputNum1 = 0, InputNum2 = 0, CaseType = 0, Tempory = 0;
+	int InputNum = 1;
 
-	while(1){
-		printf("1.Temporary variable");
-		printf("\n2.Addition/substraction");
-		printf("\n3.Multiply/division");
-		printf("\n4.Exclusive OR");
-		printf("\n어떤 방법으로 swap하시겠습니까?");
-		scanf("%d", &CaseType);
-
+	while (1){
 		
-
-
-
-		switch (CaseType){
-		case 0:
+		//진수 전환을 위한 변수 설정
+		int j = 0;
+		int Num8 = 0, Num16 = 0;
+		
+		//숫자를 입력받음
+		printf("숫자를 입력해주시오:");
+		scanf("%d", &InputNum);
+		if (InputNum==0){
 			return 0;
-
-		case 1:
-			printf("\n2개의 정수를 입력해주시오:");
-			scanf("%d %d", &InputNum1, &InputNum2);
-			Tempory = InputNum1;
-			InputNum1 = InputNum2;
-			InputNum2 = Tempory;
-			printf("Num1=%d, Num2=%d\n", InputNum1, InputNum2);
-			break;
-		case 2:
-			printf("\n2개의 정수를 입력해주시오:");
-			scanf("%d %d", &InputNum1, &InputNum2);
-			InputNum1 = InputNum1 - InputNum2;
-			InputNum2 = InputNum1 + InputNum2;
-			InputNum1 = -(InputNum1 - InputNum2);
-			printf("Num1=%d, Num2=%d\n", InputNum1, InputNum2);
-			break;
-
-		case 3:printf("\n2개의 정수를 입력해주시오:");
-			scanf("%d %d", &InputNum1, &InputNum2);
-			InputNum1 = InputNum1*InputNum2;
-			InputNum2 = InputNum1 / InputNum2;
-			InputNum1 = InputNum1 / InputNum2;
-			printf("Num1=%d, Num2=%d\n", InputNum1, InputNum2);
-			break;
-
-		case 4:printf("\n2개의 정수를 입력해주시오:");
-			scanf("%d %d", &InputNum1, &InputNum2);
-			InputNum1 = InputNum1 ^ InputNum2;
-			InputNum2 = InputNum1 ^ InputNum2;
-			InputNum1 = InputNum1 ^ InputNum2;
-			printf("Num1=%d, Num2=%d\n", InputNum1, InputNum2);
-			break;
-
-		default:
-			printf("다시 입력해주시오\n");
-
 		}
+		
+		//숫자를 이진수로 변환
+		printf("\t\t");
+		for (int i = 31; i >= 0; i--){
+			printf("%d", 1 & (InputNum >> i));
+		}
+		printf("\n\t\t");
+		
+		//숫자를 8진수로 변환
+		for (int i = 0, Digit = 1; i <= 10; i++){
+			Num8 += (7 & (InputNum >> 3 * i))*Digit;
+			Digit *= 10;
+		}
+		printf("%32d\t", Num8);
+		
+		//%o를 이용해 8진수 출력
+		printf("%10o", InputNum);
+		printf("\n\t\t                        ");
+		
+		//숫자를 16진수로 변환
+		for (int i = 7; Num16 == 0; i--){
+			Num16 = 15 & (InputNum >> 4 * i);
+			j += 1;
+			
+		}
+		for (int i = 0; i<j-1; i++){
+			printf(" ");
+		}
+
+		for (int i = 7 - j + 1; i >= 0; i--){
+			Num16 = 15 & (InputNum >> 4 * i);
+			if (Num16 > 9){
+				printf("%c", Num16 + 87);
+			}
+			else{
+				printf("%d", Num16);
+			}
+		}
+
+		//%x를 이용해 16진수 출력
+		printf(" \t%10x", InputNum);
+		printf("\n");
+
 	}
 	
-	
-
 
 }
