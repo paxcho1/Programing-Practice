@@ -5,43 +5,43 @@ int main(){
 	int InputNum = 1;
 
 	while (1){
-		
-		//Áø¼ö ÀüÈ¯À» À§ÇÑ º¯¼ö ¼³Á¤
+
+		//ì§„ìˆ˜ ì „í™˜ì„ ìœ„í•œ ë³€ìˆ˜ ì„¤ì •
 		int j = 0;
 		int Num8 = 0, Num16 = 0;
-		
-		//¼ıÀÚ¸¦ ÀÔ·Â¹ŞÀ½
-		printf("¼ıÀÚ¸¦ ÀÔ·ÂÇØÁÖ½Ã¿À:");
+
+		//ìˆ«ìë¥¼ ì…ë ¥ë°›ìŒ
+		printf("ìˆ«ìë¥¼ ì…ë ¥í•´ì£¼ì‹œì˜¤:");
 		scanf("%d", &InputNum);
-		if (InputNum==0){
+		if (InputNum == 0){
 			return 0;
 		}
-		
-		//¼ıÀÚ¸¦ ÀÌÁø¼ö·Î º¯È¯
-		printf("\t\t");
+
+		//ìˆ«ìë¥¼ ì´ì§„ìˆ˜ë¡œ ë³€í™˜
+		printf("\t2ì§„ìˆ˜:");
 		for (int i = 31; i >= 0; i--){
 			printf("%d", 1 & (InputNum >> i));
 		}
-		printf("\n\t\t");
-		
-		//¼ıÀÚ¸¦ 8Áø¼ö·Î º¯È¯
+		printf("\n\t8ì§„ìˆ˜:");
+
+		//ìˆ«ìë¥¼ 8ì§„ìˆ˜ë¡œ ë³€í™˜
 		for (int i = 0, Digit = 1; i <= 10; i++){
 			Num8 += (7 & (InputNum >> 3 * i))*Digit;
 			Digit *= 10;
 		}
 		printf("%32d\t", Num8);
-		
-		//%o¸¦ ÀÌ¿ëÇØ 8Áø¼ö Ãâ·Â
-		printf("%10o", InputNum);
-		printf("\n\t\t                        ");
-		
-		//¼ıÀÚ¸¦ 16Áø¼ö·Î º¯È¯
+
+		//%oë¥¼ ì´ìš©í•´ 8ì§„ìˆ˜ ì¶œë ¥
+		printf("%20o", InputNum);
+		printf("\n\t16ì§„ìˆ˜:                       ");
+
+		//ìˆ«ìë¥¼ 16ì§„ìˆ˜ë¡œ ë³€í™˜
 		for (int i = 7; Num16 == 0; i--){
 			Num16 = 15 & (InputNum >> 4 * i);
 			j += 1;
-			
+
 		}
-		for (int i = 0; i<j-1; i++){
+		for (int i = 0; i<j - 1; i++){
 			printf(" ");
 		}
 
@@ -55,11 +55,11 @@ int main(){
 			}
 		}
 
-		//%x¸¦ ÀÌ¿ëÇØ 16Áø¼ö Ãâ·Â
-		printf(" \t%10x", InputNum);
+		//%xë¥¼ ì´ìš©í•´ 16ì§„ìˆ˜ ì¶œë ¥
+		printf(" \t%20x", InputNum);
 		printf("\n");
 
 	}
-	
+
 
 }
