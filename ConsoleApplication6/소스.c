@@ -12,24 +12,24 @@ int main(){
 	int Matrix2[3][3] = { 0, };
 	int ResultMatrix[3][3] = { 0, };
 	
-	//1Çà¿­ ÀÔ·Â
-	printf("Ã¹¹øÂ° Çà¿­À» ÀÔ·ÂÇØÁÖ¼¼¿ä:");
+	//1í–‰ì—´ ì…ë ¥
+	printf("ì²«ë²ˆì§¸ í–‰ì—´ì„ ì…ë ¥í•´ì£¼ì„¸ìš”:");
 
 	for (int i = 0; i < 3; i++){
 		for (int j = 0; j < 3; j++){
 			scanf("%d", &Matrix1[i][j]);
 		}
 	}
-	//2Çà¿­ ÀÔ·Â
-	printf("µÎ¹øÂ° Çà¿­À» ÀÔ·ÂÇØÁÖ¼¼¿ä:");
+	//2í–‰ì—´ ì…ë ¥
+	printf("ë‘ë²ˆì§¸ í–‰ì—´ì„ ì…ë ¥í•´ì£¼ì„¸ìš”:");
 
 	for (int i = 0; i < 3; i++){
 		for (int j = 0; j < 3; j++){
 			scanf("%d", &Matrix2[i][j]);
 		}
 	}
-	//ÀÔ·ÂµÈ Çà¿­ Ãâ·Â
-	printf("ÀÔ·ÂµÈ Çà¿­:\n");
+	//ì…ë ¥ëœ í–‰ì—´ ì¶œë ¥
+	printf("ì…ë ¥ëœ í–‰ì—´:\n");
 	
 	printf("Matrix1:\n");
 	for (int i = 0; i < 3; i++){
@@ -45,9 +45,9 @@ int main(){
 		}
 		printf("\n");
 	}
-	//µ¡¼À °á°ú Ãâ·Â
-	printf("µ¡¼À °á°ú:\n");
-	IndexSum(&Matrix1, 9, &Matrix2, 9);
+	//ë§ì…ˆ ê²°ê³¼ ì¶œë ¥
+	printf("ë§ì…ˆ ê²°ê³¼:\n");
+	IndexSum(&Matrix1, &Matrix2,&ResultMatrix);
 	printf("IndexSum:\n");
 
 	for (int i = 0; i < 3; i++){
@@ -57,6 +57,7 @@ int main(){
 		printf("\n");
 	}
 
+	
 	PointerSum(&Matrix1, 9, &Matrix2, 9);
 	printf("PointerSum:\n");
 	
@@ -66,8 +67,8 @@ int main(){
 		}
 		printf("\n");
 	}
-	//°ö¼À °á°ú Ãâ·Â
-	printf("°ö¼À °á°ú:\n");
+	//ê³±ì…ˆ ê²°ê³¼ ì¶œë ¥
+	printf("ê³±ì…ˆ ê²°ê³¼:\n");
 	IndexProd(&Matrix1, 9, &Matrix2, 9);
 	printf("IndexProd:\n");
 
@@ -86,12 +87,21 @@ int main(){
 		}
 		printf("\n");
 	}
+	
+	return 0;
 }
 
 void IndexSum(int a[], int b[], int c[]){
-	
+	for (int i = 0; i < 9; i++){
+		c[i] = a[i] + b[i];
+	}
+
 }
-void PointerSum(int *a, int *b, int *c);
+void PointerSum(int *a, int *b, int *c){
+	for (int i = 0; i < 9; i++){
+		*(c + i) = *(a + i) *(b + i);
+	}
+}
 void IndexProd(int a[], int b[], int c[]);
 void PointerProd(int *a, int *b, int *c);
 
