@@ -3,7 +3,7 @@
 void IndexSum(int a[], int b[], int c[]);
 void PointerSum(int *a, int *b, int *c);
 void IndexProd(int a[3][3], int b[3][3], int c[3][3]);
-void PointerProd(int *a, int *b, int *c);
+void PointerProd(int a[3][3], int b[3][3], int c[3][3]);
 void PrintResultMatrix(int a[3][3]);
 
 int main(){
