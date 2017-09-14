@@ -2,16 +2,16 @@
 
 void IndexSum(int a[], int b[], int c[]);
 void PointerSum(int *a, int *b, int *c);
-void IndexProd(int a[], int b[], int c[]);
+void IndexProd(int a[3][3], int b[3][3], int c[3][3]);
 void PointerProd(int *a, int *b, int *c);
-void PrintResultMatrix(int a[],int Size);
+void PrintResultMatrix(int a[3][3]);
 
 int main(){
 
 	int Matrix1[3][3] = { 0, };
 	int Matrix2[3][3] = { 0, };
 	int ResultMatrix[3][3] = { 0, };
-	
+
 	//1행열 입력
 	printf("첫번째 행열을 입력해주세요:");
 
@@ -30,64 +30,40 @@ int main(){
 	}
 	//입력된 행열 출력
 	printf("입력된 행열:\n");
-	
+
 	printf("Matrix1:\n");
-	for (int i = 0; i < 3; i++){
-		for (int j = 0; j < 3; j++){
-			printf("%d  ", Matrix1[i][j]);
-		}
-		printf("\n");
-	}
+	PrintResultMatrix(&Matrix1);
+
 	printf("Matrix2:\n");
-	for (int i = 0; i < 3; i++){
-		for (int j = 0; j < 3; j++){
-			printf("%d  ", Matrix2[i][j]);
-		}
-		printf("\n");
-	}
+	PrintResultMatrix(&Matrix2);
+
 	//덧셈 결과 출력
 	printf("덧셈 결과:\n");
-	IndexSum(&Matrix1, &Matrix2,&ResultMatrix);
+	IndexSum(&Matrix1, &Matrix2, &ResultMatrix);
+	
 	printf("IndexSum:\n");
+	PrintResultMatrix(&ResultMatrix);
 
-	for (int i = 0; i < 3; i++){
-		for (int j = 0; j < 3; j++){
-			printf("%d  ", ResultMatrix[i][j]);
-		}
-		printf("\n");
-	}
 
+	PointerSum(&Matrix1, &Matrix2, &ResultMatrix);
 	
-	PointerSum(&Matrix1, 9, &Matrix2, 9);
 	printf("PointerSum:\n");
-	
-	for (int i = 0; i < 3; i++){
-		for (int j = 0; j < 3; j++){
-			printf("%d  ", ResultMatrix[i][j]);
-		}
-		printf("\n");
-	}
+	PrintResultMatrix(&ResultMatrix);
 	//곱셈 결과 출력
-	printf("곱셈 결과:\n");
-	IndexProd(&Matrix1, 9, &Matrix2, 9);
-	printf("IndexProd:\n");
-
-	for (int i = 0; i < 3; i++){
-		for (int j = 0; j < 3; j++){
-			printf("%d  ", ResultMatrix[i][j]);
-		}
-		printf("\n");
-	}
-	PointerProd(&Matrix1, 9, &Matrix2, 9);
-	printf("PointerProd:\n");
-
-	for (int i = 0; i < 3; i++){
-		for (int j = 0; j < 3; j++){
-			printf("%d  ", ResultMatrix[i][j]);
-		}
-		printf("\n");
-	}
 	
+
+	printf("곱셈 결과:\n");
+	
+	IndexProd(&Matrix1, &Matrix2, &ResultMatrix);
+	
+	printf("IndexProd:\n");
+	PrintResultMatrix(&ResultMatrix);
+
+	PointerProd(&Matrix1, &Matrix2, &ResultMatrix);
+	
+	printf("PointerProd:\n");
+	PrintResultMatrix(&ResultMatrix);
+
 	return 0;
 }
 
@@ -99,9 +75,36 @@ void IndexSum(int a[], int b[], int c[]){
 }
 void PointerSum(int *a, int *b, int *c){
 	for (int i = 0; i < 9; i++){
-		*(c + i) = *(a + i) *(b + i);
+		*(c + i) = *(a + i) + *(b + i);
 	}
 }
-void IndexProd(int a[], int b[], int c[]);
-void PointerProd(int *a, int *b, int *c);
+void IndexProd(int a[3][3], int b[3][3], int c[3][3] ){
+	for (int i = 0; i < 3; i++){
+		for (int j = 0; j < 3; j++){
+			c[i][j] = 0;
+			for (int k = 0; k < 3; k++){
+				c[i][j] += a[i][k] * b[k][j];
+			}
+		}
+	}
+}
+void PointerProd(int a[3][3], int b[3][3], int c[3][3]){
+	for (int i = 0; i < 3; i++){
+		for (int j = 0; j < 3; j++){
+			*(*(c+i)+j) = 0;
+			for (int k = 0; k < 3; k++){
+				*(*(c + i) + j) += *(*(a + i) + k) * *(*(b + k) + j);
+			}
+		}
+	}
+}
+void PrintResultMatrix(int a[3][3]){
+	for (int i = 0; i < 3; i++){
+		for (int j = 0; j < 3; j++){
+			printf("%5d  ", a[i][j]);
+		}
+		printf("\n");
+	}
+
+}
 
