@@ -1,45 +1,51 @@
 #include <stdio.h>
 
 char *reverse(char *str1);
-char *encryptN(char *str1,int n);
+char *encryptN(char *str1, int n);
 char *rotateN(char *str1);
 void print(char *str1, int n);
 
 int main(){
 
-	char Line[100] = '0w';
+	char Line[101] = { NULL};
 	int Count = 0;
 	int Rotate = 0;
 	int Encrypt = 0;
 
-	printf("ÀÔ·ÂÀ» Á¾·áÇÏ·Á¸é »õ·Î¿î Çà¿¡¼­ (ctrl + z)¸¦ ´©¸£½Ê½Ã¿À.\n");
+	printf("ì…ë ¥ì„ ì¢…ë£Œí•˜ë ¤ë©´ ìƒˆë¡œìš´ í–‰ì—ì„œ (ctrl + z)ë¥¼ ëˆ„ë¥´ì‹­ì‹œì˜¤.\n");
+	
+	gets(Line);
 
-	while (gets(Line[Count])){
+	while (Line[Count]){
 		Count++;
 	}
-	printf("ÀÔ·ÂµÈ String:");
+	printf("ì…ë ¥ëœ String:");
 	print(Line, Count);
 
-	
 
+	//ë°°ì—´ Reverse
 	printf("Reversed:");
 	print(reverse(Line), Count);
-	
-	
-	printf("¸î ¸¸Å­ Encyrpt?:");
-	printf("Encrypt:");
-	scanf("%d", &Encrypt);
-	print(encryptN(Line, Encrypt), Count);
 
-	printf("¸î ¸¸Å­ Rotate?:");
+	//ë°°ì—´ ì •ìƒí™”
+	reverse(Line);
+	
+
+	printf("ëª‡ ë§Œí¼ Encyrpt?:");
+	scanf("%d", &Encrypt);
+	printf("\nEncrypt:");
+	
+	print(encryptN(Line, Encrypt), Count);
+/*
+	printf("ëª‡ ë§Œí¼ Rotate?:");
 	printf("Rotate:");
 	scanf("%d", &Rotate);
 	print(rotate(Line, Rotate), Count);
+	*/
+
+
 
 	
-
-
-
 }
 
 void print(char *str1, int n){
@@ -49,7 +55,38 @@ void print(char *str1, int n){
 	printf("\n");
 }
 char *reverse(char *str1){
-	
+	char Temp = 0;
+	int Count = 0;
 
-	
+	while (str1[Count]){
+		Count++;
+	}
+	for (int i = 0; i <((Count)/2); i++){
+		Temp = str1[i];
+		str1[i] = str1[(Count-1)-i];
+		str1[(Count-1) - i] = Temp;
+		
+		
+	}
+
+	return str1;
+
+}
+char *encryptN(char *str1, int n){
+	int Count = 0;
+
+	while (str1[Count]){
+		Count++;
+	}
+	for (int i = 0; i < Count-1; i++){
+		if (str1[i] >= 65 && str1[i] <= 90){
+			
+			str1[i] = str1[i]+n;
+		}
+		else if (str1[i] >= 97 && str1[i] <= 122){
+			str1[i] = str1[i + n];
+		}
+
+	}
+	return str1;
 }
