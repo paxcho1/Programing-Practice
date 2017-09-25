@@ -2,8 +2,8 @@
 
 char *reverse(char *str1);
 char *encryptN(char *str1, int n);
-char *rotateN(char *str1,int n);
-void print(char *str1, int n);
+char *rotateN(char *str1, int n);
+void printString(char *str1, int n);
 
 int main(){
 	
@@ -20,12 +20,12 @@ int main(){
 		Count++;
 	}
 	printf("입력된 String:");
-	print(Line, Count);
+	printString(Line, Count);
 
 
 	//배열 Reverse
 	printf("Reversed:");
-	print(reverse(Line), Count);
+	printString(reverse(Line), Count);
 
 	//배열 정상화
 	reverse(Line);
@@ -35,21 +35,21 @@ int main(){
 	scanf("%d", &Encrypt);
 	printf("Encrypt:");
 
-	print(encryptN(Line, Encrypt), Count);
-	
+	printString(encryptN(Line, Encrypt), Count);
+
 	//배열 정상화
-	print(encryptN(Line, -Encrypt), Count);
-	/*
+	encryptN(Line, -Encrypt);
+	
 	printf("몇 만큼 Rotate?:");
 	printf("Rotate:");
 	scanf("%d", &Rotate);
-	print(rotate(Line, Rotate), Count);
-	*/
-
+	printString(rotate(Line, Rotate), Count);
+	
+	
 	return 0;
 }
 
-void print(char *str1, int n){
+void printString(char *str1, int n){
 	for (int i = 0; i < n; i++){
 		printf("%c", str1[i]);
 	}
@@ -78,29 +78,33 @@ char *encryptN(char *str1, int n){
 
 	while (str1[Count]){
 		Count++;
-		
+
 	}
-	if (n > 26){
+	if (n > 26 || n<-26){
 		n = n % 26;
 	}
-	else if (n < 0 &&n>=-26){
-		n = n + 26;
-	}
-	else if (n < -26){
-		n = -(-n % 26)+26;
-	}
+	
+	
+	
 	for (int i = 0; i < Count; i++){
 		if (str1[i] >= 65 && str1[i] <= 90){
-			
+
 			str1[i] = str1[i] + n;
+
 			if (str1[i]>90){
 				str1[i] = str1[i] - 26;
+			}
+			else if (str1[i]<65){
+				str1[i] = str1[i] + 26;
 			}
 		}
 		else if (str1[i] >= 97 && str1[i] <= 122){
 			str1[i] = str1[i] + n;
 			if (str1[i] > 122){
 				str1[i] = str1[i] - 26;
+			}
+			else if (str1[i] < 97){
+				str1[i] = str1[i] + 26;
 			}
 		}
 
@@ -112,8 +116,12 @@ char *rotateN(char *str1, int n){
 	while (str1[Count]){
 		Count++;
 	}
+	n = n%Count;
 	for (int i = 0; i < Count; i++){
-
+		str1[i] = str1[i + n];
+		if (i + n>Count){
+			str1[i] = str1[i + n - Count];
+		}
 	}
-
+	return str1;
 }
