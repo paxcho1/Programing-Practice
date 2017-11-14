@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{BC94E28B-26BA-4F37-83A1-8CE7A256D622}</ProjectGuid>
+    <ProjectGuid>{5E397BB8-A617-4F02-A75D-68C929A7E11F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ConsoleApplication9</RootNamespace>
   </PropertyGroup>
